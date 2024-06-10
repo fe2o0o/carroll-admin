@@ -1,0 +1,84 @@
+<section>
+  <div class="container p-4">
+    <div *ngIf="bids.length != 0 ; else test">
+      <div class="head mb-5">
+        <h1>Auctions Reguests</h1>
+      </div>
+      <table class="table text-center table-striped w-100">
+        <thead class="">
+          <th class="p-3">
+            User Name
+          </th>
+          <th class="p-3">
+            User Email
+          </th>
+          <th class="p-3">
+            Member Type
+          </th>
+          <th class="p-3">
+            User Bid
+          </th>
+          <th class="p-3">
+            Bid Start
+          </th>
+          <th class="p-3">
+            Controls
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bid of bids">
+            <td>{{bid?.user?.name}}</td>
+            <td>{{bid?.user?.email}}</td>
+            <td>{{bid?.user?.memberType}}</td>
+            <td>{{bid?.price|currency:'EGP '}}</td>
+            <td>{{bid?.auction?.bind_start|currency:'EGP '}}</td>
+            <td *ngIf="bid?.status == 'pending'">
+              <button (click)="acceptBid(bid?.id)" class="btn btn-success me-2">Accept</button>
+              <button (click)="rejectBid(bid?.id)" class="btn btn-danger">Reject</button>
+            </td>
+            <td *ngIf="bid?.status != 'pending' ">
+              <p [ngClass]="getClass(bid?.status)" class="fw-bold">{{bid?.status}}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="py-5">
+      <h3 class="mb-5">Create Showroom For this Auction</h3>
+      <form (ngSubmit)="handleRomm(roomForm)" [formGroup]="roomForm" action="">
+        <div class="form-group mb-3">
+          <label class="fw-bold mb-2" for="">Location</label>
+          <input formControlName="location" type="text" class="form-control">
+              <div *ngIf="roomForm?.get('location')?.errors && roomForm.get('location')?.touched">
+                <P *ngIf="roomForm?.get('location')?.getError('required')" class="m-0 fw-bold text-danger">location is Reuired</P>
+              </div>
+        </div>
+        <div class="form-group mb-3">
+          <label  class="fw-bold mb-2" for="">Capacity</label>
+          <input formControlName="cap" type="number" class="form-control">
+              <div *ngIf="roomForm?.get('cap')?.errors && roomForm.get('cap')?.touched">
+                <P *ngIf="roomForm?.get('cap')?.getError('required')" class="m-0 fw-bold text-danger">Capacity is Reuired</P>
+              </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="fw-bold mb-2" for="">Show Room Price</label>
+          <input formControlName="price" type="number" class="form-control">
+              <div *ngIf="roomForm?.get('price')?.errors && roomForm.get('price')?.touched">
+                <P *ngIf="roomForm?.get('price')?.getError('required')" class="m-0 fw-bold text-danger">price is Reuired</P>
+              </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="fw-bold mb-2" for="">Show Room Date</label>
+          <input formControlName="date" type="date" class="form-control">
+              <div *ngIf="roomForm?.get('date')?.errors && roomForm.get('date')?.touched">
+                <P *ngIf="roomForm?.get('date')?.getError('required')" class="m-0 fw-bold text-danger">Date is Reuired</P>
+              </div>
+        </div>
+        <button [disabled]="roomForm.invalid" class="btn btn-warning fw-bold w-25">Create</button>
+      </form>
+    </div>
+  </div>
+</section>
+<ng-template #test>
+  <h1 class="text-center p-5">Dont Have Requests Yet !!</h1>
+</ng-template>

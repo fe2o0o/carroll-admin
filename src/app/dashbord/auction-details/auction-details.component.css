@@ -1,0 +1,25 @@
+section
+{
+  margin-left: 20%;
+}
+
+
+.rejected{
+  width: 30%;
+  position: fixed;
+  top: 0;
+  display: none;
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+
+
+.fa-circle-xmark{
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}

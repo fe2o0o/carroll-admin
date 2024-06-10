@@ -1,0 +1,88 @@
+<section class="">
+  <div *ngIf="auctions?.data?.length != 0 ; else test" class="container p-5">
+    <div class="head mb-5">
+      <h1>Auctions Reguests</h1>
+    </div>
+    <table class="table text-center table-striped w-100">
+      <thead class="">
+        <th class="p-3">
+          User Name
+        </th>
+        <th class="p-3">
+          Car Model
+        </th>
+        <th class="p-3">
+          Bid Start
+        </th>
+        <th class="p-3">
+          Start Date
+        </th>
+        <th class="p-3">
+          End Date
+        </th>
+        <th class="p-3" >
+          Controls
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let auction of auctions?.data">
+          <td>{{auction?.user?.name}}</td>
+          <td>{{auction?.car?.model}}</td>
+          <td>{{auction?.bind_start|currency:'EGP '}}</td>
+          <td>{{auction?.auction_date_start}}</td>
+          <td>{{auction?.auction_date_end}}</td>
+          <td>
+            <button [routerLink]="['/dashbord/auction-details',auction?.id]" class="btn btn-primary">Show Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container p-5">
+    <div class="head mb-5">
+      <h1>All Auctions </h1>
+    </div>
+    <table class="table text-center table-striped w-100">
+      <thead class="">
+        <th class="p-3">
+          User Name
+        </th>
+        <th class="p-3">
+          Car Model
+        </th>
+        <th class="p-3">
+          Bid Start
+        </th>
+        <th class="p-3">
+          Start Date
+        </th>
+        <th class="p-3">
+          End Date
+        </th>
+        <th class="p-3">
+          Availability
+        </th>
+        <th class="p-3" >
+          Controls
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor=" let auction of allAuctions?.data">
+          <td>{{auction?.user?.name}}</td>
+          <td>{{auction?.car?.model}}</td>
+          <td>{{auction?.bind_start|currency:'EGP '}}</td>
+          <td>{{auction?.auction_date_start}}</td>
+          <td>{{auction?.auction_date_end}}</td>
+          <td>{{auction?.isAvail}}</td>
+          <td>
+            <button [routerLink]="['/dashbord/auction-details',auction?.id]" class="btn btn-primary">Show Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<ng-template #test >
+  <h1 class="text-center p-5" >Dont Have Requests Yet !!</h1>
+</ng-template>

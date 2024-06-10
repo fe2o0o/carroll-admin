@@ -1,0 +1,110 @@
+<section class="position-relative">
+  <div class="container p-5">
+    <div class="head mb-5">
+      <h1>Auction Details</h1>
+    </div>
+    <div class="user-details mb-5">
+      <h2>User Details</h2>
+      <div class="border shadow rounded-3 p-3">
+        <div class="row justify-content-between">
+          <div class="col-md-5">
+            <p class="fs-5 fw-bold">Name: <span>{{user?.name}}</span></p>
+            <p class="fs-5 fw-bold">phone number: <span>{{user?.phoneNumber}}</span></p>
+          </div>
+          <div class="col-md-5">
+            <p class="fs-5 fw-bold">Email : <span>{{user?.email}}</span></p>
+            <p class="fs-5 fw-bold">Member Type : <span>{{user?.memberType}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5 justify-content-between border p-3 rounded-3 shadow">
+      <div class="col-md-4">
+        <div class="car-details">
+          <div class="details-content ">
+            <h2 class=" mb-4">Vehicle Details</h2>
+            <ul class="list-unstyled">
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Chassis Number : <span
+                    class="ms-3  fw-medium detail-content">{{car?.Chassisnumber}}</span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Cylinders : <span class="ms-3  fw-medium detail-content">{{car?.cylinders}}</span>
+                </p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Body Style : <span
+                    class="ms-3  fw-medium detail-content">{{car?.bodystyle}}</span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Color : <span [style.background-color]="car?.color"
+                    class="ms-3  shadow py-1 px-5 fw-medium detail-content"></span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Transmission : <span
+                    class="ms-3  fw-medium detail-content">{{car?.transmission}}</span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Brand : <span class="ms-3  fw-medium detail-content">{{car?.brand}}</span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Model : <span class="ms-3  fw-medium detail-content">{{car?.model}}</span></p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Kilometers : <span class="ms-3  fw-medium detail-content">{{car?.kilometers}}
+                    km/h</span>
+                </p>
+              </li>
+              <li class="py-2">
+                <p class="fw-bolder m-0 fs-5">Has Accident : <span class="ms-3  fw-medium detail-content">{{car?.hasaccident ?
+                    "Yes" : "No"}}</span>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="images row justify-content-between">
+          <div *ngFor="let img of images" class="col-md-6">
+            <img class="w-100"  [src]="img?.imagePath" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auction-details border p-3 rounded-3 shadow">
+      <h3>Auction Information</h3>
+      <div class="row">
+        <div class="col-md-5">
+          <p class="fs-5 fw-bold">Start Date : <span class="ms-3">{{data?.data[0]?.auction_date_start}}</span></p>
+          <p class="fs-5 fw-bold">Start Biding : <span class="ms-3">{{data?.data[0]?.bind_start|currency:"EGP "}}</span></p>
+          <p class="fs-5 fw-bold"> Availability : <span class="ms-3">{{data?.data[0]?.isAvail ? 'Availabel':'Not Available '}}</span></p>
+        </div>
+        <div class="col-md-5">
+          <p class="fs-5 fw-bold">End Date : <span class="ms-3">{{data?.data[0]?.auction_date_end}}</span></p>
+          <p class="fs-5 fw-bold">Last Biding : <span class="ms-3">{{data?.data[0]?.last_bid|currency:"EGP "}}</span></p>
+          <p class="fs-5 fw-bold">Status : <span class="ms-3">{{data?.data[0]?.status}}</span></p>
+        </div>
+        <div *ngIf="data?.data[0]?.status == 'pending'" class="py-4 ">
+          <button (click)="acceptAuction(data?.data[0]?.id)" class="btn w-25 btn-success me-4">Accept</button>
+          <button (click)="handleReject()" class="btn w-25 btn-danger">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rejected shadow bg-white ">
+      <div class="p-3 position-relative">
+        <i  (click)="handleReject()" class="fa-solid fa-circle-xmark text-danger "></i>
+        <h6 class="text-center ">Are Your Sure Reject This Auction ?!</h6>
+        <form (ngSubmit)="rejectAuction(rejectForm)" [formGroup]="rejectForm" action="">
+
+          <label for="" class="mb-2 fw-bold">Reason</label>
+          <textarea formControlName="message" name="" id="" class="form-control mb-2"></textarea>
+                <div *ngIf="rejectForm?.get('message')?.errors && rejectForm.get('message')?.touched">
+                  <P *ngIf="rejectForm?.get('message')?.getError('required')" class="m-0 fw-bold text-danger">message is Reuired</P>
+                </div>
+          <button  [disabled]="rejectForm.invalid" class="btn btn-danger">Rejected</button>
+        </form>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<aside class=" position-fixed top-0 bottom-0 start-0 bg-dark">
+  <div class="head text-center p-5">
+    <img width="100" class="mb-3" src="assets/images/logo.png" alt="">
+    <h1 class="text-white fs-5">Admin Dashboard</h1>
+  </div>
+  <nav>
+    <ul class="list-unstyled">
+      <li class="px-5 py-3"><a routerLink="auctions" class="text-white text-decoration-none fw-bold" >Auctions Requests</a></li>
+      <li class="px-5 py-3"><a routerLink="completed-auctions" class="text-white text-decoration-none fw-bold" >Completed Auctions</a></li>
+      <li class="px-5 py-3"><a routerLink="feedbacks" class="text-white text-decoration-none fw-bold" >Feed Backs</a></li>
+      <li class="px-5 py-3"><a routerLink="contacts" class="text-white text-decoration-none fw-bold" >Guests Contact</a></li>
+    </ul>
+    <div class="w-75 mx-auto ">
+      <button (click)="logOut()" class="btn btn-danger w-100 fw-bold">logOut</button>
+    </div>
+  </nav>
+</aside>

@@ -1,0 +1,26 @@
+<section class="vh-100 ">
+  <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="login w-50 shadow bg-white p-3 rounded-3">
+      <h2>Admin User Login</h2>
+            <form (ngSubmit)="handleLogin(loginForm)" [formGroup]="loginForm" action="">
+              <div class="form-group mb-4">
+                <label for="" class="fw-bold mb-2">Email <span class="fw-bolder text-danger fs-5">*</span></label>
+                <input formControlName="email" type="email" class="form-control" placeholder="Johne-Doe@example.com">
+                <div *ngIf="loginForm?.get('email')?.errors && loginForm.get('email')?.touched">
+                  <P *ngIf="loginForm?.get('email')?.getError('required')" class="m-0 fw-bold text-danger">Email is Reuired</P>
+                  <P *ngIf="loginForm?.get('email')?.getError('email')" class="m-0 fw-bold text-danger">Email is not Vaild</P>
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="" class="fw-bold mb-2">Password <span class="fw-bolder text-danger fs-5">*</span></label>
+                <input formControlName="password" type="password" class="form-control" placeholder="**********">
+                <div *ngIf="loginForm?.get('password')?.errors && loginForm.get('password')?.touched">
+                  <P *ngIf="loginForm?.get('password')?.getError('required')" class="m-0 fw-bold text-danger">password is Reuired
+                  </P>
+                </div>
+              </div>
+              <button [disabled]="loginForm.invalid" class="btn w-100 btn-primary">Sign in</button>
+            </form>
+    </div>
+  </div>
+</section>

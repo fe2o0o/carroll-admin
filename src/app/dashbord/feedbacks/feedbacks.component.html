@@ -1,0 +1,36 @@
+<section>
+    <div class="container p-5">
+      <div class="head mb-5">
+        <h1>All FeedBacks </h1>
+      </div>
+      <table class="table text-center table-striped w-100">
+        <thead class="">
+          <th class="p-3">
+            User Name
+          </th>
+          <th class="p-3">
+            User Email
+          </th>
+          <th class="p-3">
+            Phone Number
+          </th>
+          <th class="p-3">
+            Date
+          </th>
+          <th class="p-3">
+            Content
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feed of feedbacks">
+            <td>{{feed?.user?.name}}</td>
+            <td>{{feed?.user?.email}}</td>
+            <td>{{feed?.user?.phoneNumber}}</td>
+            <td>{{feed?.createdAt}}</td>
+            <td>{{feed?.content}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</section>

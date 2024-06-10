@@ -1,0 +1,39 @@
+<section>
+  <div class="container p-5">
+    <div class="head mb-5">
+      <h1>All Contacts </h1>
+    </div>
+    <table class="table text-center table-striped w-100">
+      <thead class="">
+        <th class="p-3">
+          User Name
+        </th>
+        <th class="p-3">
+          User Email
+        </th>
+        <th class="p-3">
+          Phone Number
+        </th>
+        <th class="p-3">
+          Date
+        </th>
+        <th class="p-3">
+          Subject
+        </th>
+        <th class="p-3">
+          Message
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{contact?.name}}</td>
+          <td>{{contact?.email}}</td>
+          <td>{{contact?.phoneNumber}}</td>
+          <td>{{contact?.createdAt}}</td>
+          <td>{{contact?.subject}}</td>
+          <td>{{contact?.message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
